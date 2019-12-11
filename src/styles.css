@@ -21,9 +21,32 @@ body {
 }
 
 .input-field {
+  margin: 40px;
   width: 600px;
   font-size: 20px;
   padding: 16px;
-  border-radius: 6px;
-  border: solid 1px;
+  border: none;
+  box-shadow: 5px 5px 30px rgba(0,0,0,0.3);
+  outline: none;
+  transition: box-shadow 200ms;
+}
+
+.input-field:focus {
+  box-shadow: 10px 10px 30px rgba(0,0,0,0.5);
+}
+
+.load-more-btn {
+  margin: 40px;
+  padding: 15px 30px;
+  border: none;
+  box-shadow: 5px 5px 30px rgba(0,0,0,0.3);
+  background-color: white;
+  color: balck;
+  font-size: 20px;
+  outline: none;
+}
+
+.load-more-btn:active {
+  transform: translate(1px, 1px);
+  
 }
