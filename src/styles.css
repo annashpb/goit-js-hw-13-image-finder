@@ -26,27 +26,42 @@ body {
   font-size: 20px;
   padding: 16px;
   border: none;
-  box-shadow: 5px 5px 30px rgba(0,0,0,0.3);
+  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.3);
   outline: none;
   transition: box-shadow 200ms;
 }
 
 .input-field:focus {
-  box-shadow: 10px 10px 30px rgba(0,0,0,0.5);
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .load-more-btn {
   margin: 40px;
   padding: 15px 30px;
   border: none;
-  box-shadow: 5px 5px 30px rgba(0,0,0,0.3);
+  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.3);
   background-color: white;
   color: balck;
   font-size: 20px;
   outline: none;
+  cursor: pointer;
 }
 
-.load-more-btn:active {
+.back-to-top {
+  width: 60px;
+  height: 60px;
+  text-indent: -9999px;
+  position: fixed;
+  z-index: 999;
+  right: 60px;
+  bottom: 60px;
+  background: #ffffff url(./images/baseline_expand_less_black_18dp.png)
+    no-repeat center 43%;
+  border-radius: 30px;
+  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.3);
+}
+
+.load-more-btn:active,
+.back-to-top:active {
   transform: translate(1px, 1px);
-  
 }
