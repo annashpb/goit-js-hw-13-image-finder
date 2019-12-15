@@ -5,7 +5,6 @@ const debounce = require('lodash.debounce');
 import { pWarning, pNotice } from './utils/pnotify';
 import { messages } from './utils/messages';
 import 'regenerator-runtime/runtime';
-import * as basicLightbox from 'basiclightbox';
 
 function searchFormSubmitHandler(event) {
   event.preventDefault();
@@ -32,24 +31,19 @@ function loadMoreBtnHandler() {
   if (searchService.searchQuery.length === 0) {
     pNotice(messages.warningNoInput);
   } else {
-    const loadMore = async () => {
-      try {
-        const images = await searchService.fetchImages();
-        const markup = buildPhotoCardMarkup(images);
+    searchService
+      .fetchImages()
+      .then(data => {
+        const markup = buildPhotoCardMarkup(data);
         insertPhotoCards(markup);
-        return images;
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    const promise = loadMore();
-    promise.then(() => {
-      window.scrollBy({
-        top: window.innerHeight,
-        left: 0,
-        behavior: 'smooth',
+      })
+      .then(() => {
+        window.scrollBy({
+          top: window.innerHeight,
+          left: 0,
+          behavior: 'smooth',
+        });
       });
-    });
   }
 }
 
@@ -71,4 +65,3 @@ refs.searchForm.addEventListener(
 );
 
 refs.loadMoreBtn.addEventListener('click', loadMoreBtnHandler);
-
