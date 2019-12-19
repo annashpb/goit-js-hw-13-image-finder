@@ -27,7 +27,8 @@ function searchFormSubmitHandler(event) {
     .catch(err => console.log(err));
 }
 
-function loadMoreBtnHandler() {
+function loadMoreBtnHandler(event) {
+  event.preventDefault();
   if (searchService.searchQuery.length === 0) {
     pNotice(messages.warningNoInput);
   } else {

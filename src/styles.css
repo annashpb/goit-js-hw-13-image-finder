@@ -35,6 +35,22 @@ body {
   box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.5);
 }
 
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.gallery-item {
+  max-width: 30%;
+}
+
+.photo-card img {
+  width: 100%;
+  height: auto;
+}
+
 .load-more-btn {
   margin: 40px;
   padding: 15px 30px;
@@ -65,7 +81,6 @@ body {
 .back-to-top:active {
   transform: translate(1px, 1px);
 }
-
 
 .modal {
   position: fixed;
