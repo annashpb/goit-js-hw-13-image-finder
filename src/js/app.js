@@ -29,6 +29,12 @@ function searchFormSubmitHandler(event) {
 
 function loadMoreBtnHandler(event) {
   event.preventDefault();
+  const galleryHeight = refs.imagesList.offsetHeight;
+  const btnHeight = refs.loadMoreBtn.offsetHeight;
+  const scrollingPoint = galleryHeight + btnHeight;
+  console.log('Галерея до построения ' + galleryHeight);
+  console.log('Высота кнопки ' + btnHeight);
+  console.log('Точка, в которую нужно отправить ' + scrollingPoint);
   if (searchService.searchQuery.length === 0) {
     pNotice(messages.warningNoInput);
   } else {
@@ -37,13 +43,19 @@ function loadMoreBtnHandler(event) {
       .then(data => {
         const markup = buildPhotoCardMarkup(data);
         insertPhotoCards(markup);
+        console.log(
+          'Высота галереи в операции построения макета ' + galleryHeight,
+        );
       })
       .then(() => {
-        window.scrollBy({
-          top: window.innerHeight,
+        window.scrollTo({
+          top: scrollingPoint,
           left: 0,
           behavior: 'smooth',
         });
+        console.log(
+          'Высота галереи в then после построения макета ' + galleryHeight,
+        );
       });
   }
 }
@@ -64,5 +76,11 @@ refs.searchForm.addEventListener(
   'input',
   debounce(searchFormSubmitHandler, 500),
 );
+
+refs.searchForm.addEventListener('keydown', event => {
+  if (event.code === 'Enter' || event.code === 'NumpadEnter') {
+    event.preventDefault();
+  }
+});
 
 refs.loadMoreBtn.addEventListener('click', loadMoreBtnHandler);
