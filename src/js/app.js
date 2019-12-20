@@ -30,11 +30,8 @@ function searchFormSubmitHandler(event) {
 function loadMoreBtnHandler(event) {
   event.preventDefault();
   const galleryHeight = refs.imagesList.offsetHeight;
-  const btnHeight = refs.loadMoreBtn.offsetHeight;
-  const scrollingPoint = galleryHeight + btnHeight;
-  console.log('Галерея до построения ' + galleryHeight);
-  console.log('Высота кнопки ' + btnHeight);
-  console.log('Точка, в которую нужно отправить ' + scrollingPoint);
+  const formHeight = refs.searchForm.offsetHeight;
+  const scrollingPoint = galleryHeight + formHeight;
   if (searchService.searchQuery.length === 0) {
     pNotice(messages.warningNoInput);
   } else {
@@ -43,20 +40,16 @@ function loadMoreBtnHandler(event) {
       .then(data => {
         const markup = buildPhotoCardMarkup(data);
         insertPhotoCards(markup);
-        console.log(
-          'Высота галереи в операции построения макета ' + galleryHeight,
-        );
       })
-      .then(() => {
-        window.scrollTo({
-          top: scrollingPoint,
-          left: 0,
-          behavior: 'smooth',
-        });
-        console.log(
-          'Высота галереи в then после построения макета ' + galleryHeight,
-        );
-      });
+      .then(
+        setTimeout(() => {
+          window.scrollTo({
+            top: scrollingPoint,
+            left: 0,
+            behavior: 'smooth',
+          });
+        }, 100),
+      );
   }
 }
 

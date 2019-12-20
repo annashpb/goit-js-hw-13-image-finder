@@ -3,7 +3,6 @@ const refs = {
   imagesList: document.querySelector('.gallery-js'),
   loadMoreBtn: document.querySelector('button[data-action="load more"]'),
   photoCardImage: document.querySelector('.photo-card'),
-  body: document.querySelector('body'),
 };
 
 export { refs };
